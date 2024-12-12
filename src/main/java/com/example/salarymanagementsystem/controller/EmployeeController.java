@@ -34,10 +34,10 @@ public class EmployeeController {
     }
     @GetMapping ("/edit/{id}")
     public String showEditEmployeeForm(@PathVariable int id, Model model) {
-        Employee employee = employeeService.findById(id).orElseThrow(()-> new IllegalArgumentException("Employee not found");
-        model.addText ("employee");
-        return "employees/form";
-    }
+        Employee employee = employeeService.findById(id).orElseThrow(()-> new IllegalArgumentException("Invalid Employee ID: "+id));
+        model.addText("employee");
+        return"employees/form";
+        }
     @PostMapping ("/{id}")
     public String updateEmployee(@PathVariable int id, @ModelAttribute("employee") Employee employee) {
         employee.setId(id);
